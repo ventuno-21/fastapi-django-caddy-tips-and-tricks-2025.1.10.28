@@ -1,0 +1,14 @@
+================ How to run Caddyfile in WSL terminal:
+sudo caddy stop
+sudo caddy run --config /home/yas/caddy/001/Caddyfile --adapter caddyfile
+==========================================================================
+run app project in two different teminals with different port:
+uvicorn app:app --host 0.0.0.0 --port 8000
+uvicorn app:app --host 0.0.0.0 --port 8001
+or for more clarification you can do anther app with name for example app1:
+uvicorn app1:app --host 0.0.0.0 --port 8002
+
+after running Caddyfile, check below endpointes:
+http://localhost:3030/
+http://localhost:3030/api/
+http://localhost:3030/api/users

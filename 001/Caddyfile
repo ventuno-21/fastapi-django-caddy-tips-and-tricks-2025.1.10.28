@@ -1,0 +1,29 @@
+# ------------------------------
+# Caddyfile Configuration
+# ------------------------------
+
+http://localhost:3030 {
+    # static files path
+    root * /home/yas/caddy/static
+    file_server
+
+
+    # api path
+    handle_path /api/* {
+        reverse_proxy 127.0.0.1:8000 127.0.0.1:8001 {
+            lb_policy round_robin  # means Caddy will send requests alternately to each backend
+            health_uri /health #Caddy will periodically send a request to /health on each backend server to check if it’s alive.
+        }
+    }
+
+    # log to investigate
+    log {
+        output file /home/yas/caddy/access.log
+    }
+}
+
+
+http://localhost:3031 {
+    root * /home/yas/caddy/static2
+    file_server
+}
